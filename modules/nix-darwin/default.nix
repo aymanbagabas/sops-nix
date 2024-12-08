@@ -349,7 +349,8 @@ in
             message = "No key source configured for sops. Either set services.openssh.enable or set sops.age.keyFile or sops.gnupg.home";
           }
           {
-            assertion = !(cfg.gnupg.home != null && cfg.gnupg.sshKeyPaths != [ ]);
+            assertion =
+              cfg.gnupg.home != null && (cfg.gnupg.sshKeyPaths != null && cfg.gnupg.sshKeyPaths != [ ]);
             message = "Exactly one of sops.gnupg.home and sops.gnupg.sshKeyPaths must be set";
           }
         ]
